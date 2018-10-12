@@ -13,7 +13,7 @@ We have also made much more cost effective by using Atmega8 Microcontroller inst
 ## Componenets
 
 
-| SL No        | Name           | Nos  |
+| SL No        | Name           | No of Items Needed  |
 | ------------- |:-------------:| -----:|
 | 1     | Raspberry Pi               |   x1 |
 | 2     | Resistor 1k                |   x1 |
@@ -24,7 +24,7 @@ We have also made much more cost effective by using Atmega8 Microcontroller inst
 | 7     | Arduino Uno R3             |   x1 |
 | 8     | HC-SRO4 Ultrasonic sensor  |   x2 |
 | 9     | 9V Battery                 |   x2 |
-| 9     | Cables and Jumper wires    |   XX |
+| 10     | Cables and Jumper wires   |   x |
 
 
 ## Construction
@@ -34,7 +34,9 @@ Given below is a diagram of  the connections, the components need to be connecte
 ![alt text]( https://vibhoothiiaanand.files.wordpress.com/2018/10/screenshot-2018-10-12-at-9-09-36-pm.png "Construction ")
 
 
-Connect Raspberry Pi to the sensor: Use 1 kilo-ohm and 2 kilo-ohm resistors to reduce the voltage from 5V to 3V. When connecting echo, connect trig directly using a jumper. Connect ground to GPIO6 and VCC to GPIO2. Get the python code given separately into the Raspberry Pi. Power the RPi using a power bank .Run it from LX terminal using : sudo python range _ sensor111.py. 
+Connect Raspberry Pi to the sensor: Use 1 kilo-ohm and 2 kilo-ohm resistors to reduce the voltage from 5V to 3V. When connecting echo, connect trig directly using a jumper. Connect ground to GPIO6 and VCC to GPIO2. Get the python code given separately into the Raspberry Pi. Power the RPi using a power bank .Run it from LX terminal using :
+
+`sudo python range _ sensor111.py. `
 
 We can  set for auto-start. Then you need not use any commands. The code will execute automatically when we power the Raspberry Pi. 
 
@@ -44,11 +46,15 @@ We can  set for auto-start. Then you need not use any commands. The code will ex
 
 Ultrasonic distance sensors consist of 3 major parts:   A transmitter, a receiver and a timer. 
 To measure a distance in this project we are using the ultrasonic sensor, the timer triggers the transmitter which emits a series of pulses, and then the timer will be waiting  until the receiver detects the reflection of the pulses and then it stops the timer.  The time measured is then divided by 2 and multiplied with the speed of sound. The result is the distance between the sensor and the object in front of it. Sound takes around 29.1 milliseconds to travel 1 cm, so we need to divide it by 29.1 so the equation will be like,
-distance = (time/2)/29.1
+
+`distance = (time/2)/29.1`
+
 Right Shoe: The sensors are kept facing the front. once distance is calculated by both the sensors it is checked whether distance is  less than 30 cm, if the boolean output is received as  yes then,its checks whether the distances are equal or not if it is true then the vibration more  vibrates for around  2.5 sec is given otherwise vibrations are created which correspond to the detection of an obstacle( lasting .2 sec). Then distance is again calculated and the cycle repeats until user stops walking or removes the gadget.
 Left shoe: The sensors are kept facing the ground. The system mounted on the left shoe works similarly but the code used is slightly different it can be understood by taking a look at the codes given separately.
 Locket : This has a Ultrasonic sensor which detects distance and sends it to the Raspberry Pi. It checks whether the distance is less than 100cm. If yes, then it will read out the following :
-“Stop, Obstacle ahead at %d cm;”
+
+`“Stop, Obstacle ahead at %d cm;”`
+
  Where %d is the distance calculated by the ultrasonic sensor. It then decides which side (left/right) is obstacle free and speaks it out to the blind person .then, distance is again calculated and the cycle repeats.
 The locket is the main part of the project which gives more realistic output and helpful
 
