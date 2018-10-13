@@ -14,4 +14,51 @@ void setup()
 float distance1, distance2, duration1, duration2 ;
 void loop() 
 {
+/*
+ * Sensor 1
+*/
+        digitalWrite(trig1,LOW);   
+        delay(2);
+        digitalWrite(trig1,HIGH);
+        delay(10);
+        digitalWrite(trig1,LOW);
+        duration1 =pulseIn(echo1,HIGH);
+        distance1 = (duration1/2)/29.1;
+        Serial.print(distance1);
+        Serial.println();
+        delay(10);
+/*
+ * Sensor 2
+*/
+        digitalWrite(trig2,LOW);   
+        delay(2);
+        digitalWrite(trig2,HIGH);
+        delay(10);
+        digitalWrite(trig2,LOW);
+        duration2 =pulseIn(echo2,HIGH);
+        distance2 = (duration2/2)/29.1;
+        Serial.print(distance2);
+        Serial.println();
+        delay(10);
+
+  if(distance1<30 || distance2<30)
+  {
+    if( distance1-distance2<1 && distance1-distance2>-1)
+     {
+         Serial.print("Its a step Up");
+         Serial.println();
+        digitalWrite(vib,HIGH);
+        delay(2500); 
+        digitalWrite(vib,LOW);
+     }
+    else
+    {
+         Serial.print("Its an Obstacle");
+        Serial.println();
+         digitalWrite(vib,HIGH);
+         delay(200);
+         digitalWrite(vib,LOW);
+         delay(200);
+    } 
+  }
 }
